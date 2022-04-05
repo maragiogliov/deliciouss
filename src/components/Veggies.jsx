@@ -15,17 +15,14 @@ useEffect(()=>{
 },[])
 
 const getVeggi = async ()=>{
-// we save the fetched API in local storage
-    const check = localStorage.getItem('veggie');
-    if(check){
-        setVeggi(JSON.parse(check));
-    }else{
+
+   
         const api = await fetch (`https://api.spoonacular.com/recipes/random?apiKey=${process.env.REACT_APP_API_KEY}&number=9&tags=vegetarian`);
         
         const data = await api.json();
         localStorage.setItem("veggie", JSON.stringify(data.recipes));
         setVeggi(data.recipes);
-    }
+    
 
 
     
